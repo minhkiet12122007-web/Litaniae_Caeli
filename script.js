@@ -1,11 +1,28 @@
-// Quản lý trạng thái Custom Cursor di chuyển mượt mà theo chuột máy tính
+// ─── 1. QUẢN LÝ CUSTOM CURSOR ĐUỔI BẮT SIÊU MƯỢT ───
 const cursor = document.getElementById('cursor');
+let mouseX = 0, mouseY = 0;
+let cursorX = 0, cursorY = 0;
+
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
+
+function animateCursor() {
+    cursorX += (mouseX - cursorX) * 1;
+    cursorY += (mouseY - cursorY) * 1;
+
+    cursor.style.left = cursorX + 'px';
+    cursor.style.top = cursorY + 'px';
+
+    requestAnimationFrame(animateCursor);
+}
+requestAnimationFrame(animateCursor);
 
 function initCustomCursor() {
     const hoverTargets = document.querySelectorAll('.hover-target');
 
     hoverTargets.forEach(target => {
-        // Reset trình lắng nghe cũ tránh lặp bộ nhớ
         target.removeEventListener('mouseenter', onMouseEnter);
         target.removeEventListener('mouseleave', onMouseLeave);
 
@@ -16,113 +33,106 @@ function initCustomCursor() {
 
 function onMouseEnter(e) {
     cursor.classList.add('active');
-    cursor.innerText = e.currentTarget.getAttribute('data-hover');
+    cursor.innerText = e.currentTarget.getAttribute('data-hover') || '';
 }
 
-function onMouseLeave() {
-    cursor.classList.remove('active');
-    cursor.innerText = '';
-}
-
-document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-});
-
-// Chạy khởi tạo chuột ngay lúc mở trang đầu tiên
+// Khởi chạy lắng nghe cursor lần đầu tiên
 initCustomCursor();
 
 
-// ─── 1. XỬ LÝ CLICK CONCEPT GIÀY: LAYOUT DỌC TRƯỢT TỪ DƯỚI LÊN (ẢNH 85VH) ───
-function openDetail(name, price, desc, imgUrl) {
+// ─── 2. ĐIỀU HƯỚNG MỞ OVERLAY CHI TIẾT ───
+
+// Mở chi tiết Tác phẩm Concept (Dạng cuộn dọc Full-width truyền thống)
+function openProduct(name, meta, desc, imgUrl) {
     const detailPage = document.getElementById('detail-page');
-    const layoutContainer = document.getElementById('detail-container-layout');
+    const layoutContainer = document.getElementById('detail-layout-container');
     const scrollHint = document.getElementById('scroll-hint');
 
-    // Nạp dữ liệu động vào cây DOM
+    // Cập nhật dữ liệu
     document.getElementById('detail-name').innerText = name;
-    document.getElementById('detail-price').innerText = price;
-    document.getElementById('detail-desc').innerText = desc;
+    document.getElementById('detail-price').innerText = meta;
+    document.getElementById('detail-desc').innerHTML = desc; // Dùng innerHTML nhận diện thẻ ngắt dòng
     document.getElementById('detail-img').src = imgUrl;
-    document.getElementById('form-product-name').value = name;
 
-    // Hiện đầy đủ form và chuột cuộn hướng dẫn
+    // Thiết lập cấu hình layout cho Concept Product
+    layoutContainer.classList.remove('member-layout');
     document.getElementById('orderForm').style.display = 'block';
     scrollHint.style.display = 'block';
+    document.getElementById('form-product-name').value = name;
 
-    // Đưa về trạng thái layout dọc chuẩn của Concept Giày
-    layoutContainer.classList.remove('member-layout');
+    // ensure correct entry animation (from bottom for product)
     detailPage.classList.remove('slide-from-right');
+    detailPage.classList.add('slide-from-bottom');
 
-    detailPage.classList.remove('hidden');
-    detailPage.scrollTop = 0; // Reset thanh cuộn để kích hoạt animation chữ từ đầu
-
-    // Dùng setTimeout tạo độ trễ nhỏ để CSS kịp tính toán hiệu ứng transition mượt mà
-    setTimeout(() => {
-        detailPage.classList.add('active-page');
-    }, 15);
-
-    document.body.style.overflow = 'hidden'; // Khóa cuộn trang nền chính bên dưới
-    initCustomCursor(); // Re-init chuột cho các phần tử bên trong trang overlay vừa hiện
+    executeOpenSequence(detailPage);
 }
 
-
-// ─── 2. XỬ LÝ CLICK THÀNH VIÊN: LAYOUT SONG SONG CHIA CỘT 45/55 TRƯỢT NGANG TỪ PHẢI SANG ───
-function openMemberDetail(name, role, achievements, imgUrl) {
+// Mở chi tiết Thành viên (Dạng Tạp chí Editorial split 2 cột sắc sảo)
+function openMember(name, position, bio, imgUrl) {
     const detailPage = document.getElementById('detail-page');
-    const layoutContainer = document.getElementById('detail-container-layout');
+    const layoutContainer = document.getElementById('detail-layout-container');
     const scrollHint = document.getElementById('scroll-hint');
 
+    // Cập nhật dữ liệu
     document.getElementById('detail-name').innerText = name;
-    document.getElementById('detail-price').innerText = role;
-    document.getElementById('detail-desc').innerText = achievements;
+    document.getElementById('detail-price').innerText = position;
+    document.getElementById('detail-desc').innerHTML = bio; // Dùng innerHTML nhận diện thẻ đoạn văn bọc sẵn
     document.getElementById('detail-img').src = imgUrl;
 
-    // Ẩn form đặt hàng và chuột cuộn hướng dẫn vì đây là trang thông tin thành viên nhóm
+    // Thiết lập cấu hình layout riêng cho Member (Ẩn Form đăng ký và Icon Cuộn chuột)
     document.getElementById('orderForm').style.display = 'none';
     scrollHint.style.display = 'none';
-
-    // Kích hoạt Class biến dạng thành dạng 2 cột song song và đổi chiều trượt từ phải qua
     layoutContainer.classList.add('member-layout');
+
+    // ensure correct entry animation (from right for member)
+    detailPage.classList.remove('slide-from-bottom');
     detailPage.classList.add('slide-from-right');
 
+    executeOpenSequence(detailPage);
+}
+
+// Hàm bổ trợ thực thi chuỗi hoạt họa mở mượt mà
+function executeOpenSequence(detailPage) {
     detailPage.classList.remove('hidden');
     detailPage.scrollTop = 0;
 
     setTimeout(() => {
         detailPage.classList.add('active-page');
-    }, 15);
+        initCustomCursor(); // Kích hoạt tương tác cursor cho các nút mới xuất hiện
+    }, 20);
 
-    document.body.style.overflow = 'hidden';
-    initCustomCursor();
+    document.body.style.overflow = 'hidden'; // Khóa cuộn trang chính bên dưới
 }
 
 
-// ─── 3. ĐÓNG TRANG OVERLAY CHI TIẾT CHI TIẾT CHUNG ───
+// ─── 3. ĐÓNG OVERLAY CHI TIẾT ───
 function closeDetail() {
     const detailPage = document.getElementById('detail-page');
     detailPage.classList.remove('active-page');
 
-    // Chờ hiệu ứng trượt hoàn tất (850ms giống CSS) rồi mới đưa về trạng thái ẩn hẳn hoàn toàn
     setTimeout(() => {
         detailPage.classList.add('hidden');
-        detailPage.classList.remove('slide-from-right');
-    }, 850);
+        // clear any slide classes so next open can choose animation
+        detailPage.classList.remove('slide-from-right', 'slide-from-bottom');
+    }, 600);
 
-    document.body.style.overflow = 'auto'; // Trả lại khả năng cuộn trang chính bình thường
+    document.body.style.overflow = 'auto'; // Trả lại trạng thái cuộn trang chủ
     cursor.classList.remove('active');
     cursor.innerText = '';
 }
 
 
-// ─── 4. XỬ LÝ ĐĂNG KÝ FORM ĐƠN HÀNG PREMIUM ───
+// ─── 4. XỬ LÝ SUBMIT FORM ĐĂNG KÝ SỞ HỮU TÁC PHẨM ───
 document.getElementById('orderForm').addEventListener('submit', function (e) {
     e.preventDefault();
     const productName = document.getElementById('form-product-name').value;
     const customerName = document.getElementById('customerName').value;
+    const phoneNumber = document.getElementById('phoneNumber').value;
 
-    alert(`⚡ PREMIUM ORDER SUCCESS!\n\nCảm ơn ${customerName} đã tin tưởng đăng ký đặt mua chiếc ${productName}.\nChúng mình sẽ phản hồi đến bạn trong thời gian sớm nhất.`);
-
-    this.reset();
+    alert(`[Litaniae Caeli] Trân trọng cảm ơn quý khách ${customerName}. Yêu cầu sở hữu tác phẩm "${productName}" với số điện thoại ${phoneNumber} đã được hệ thống ghi nhận. Chúng tôi sẽ liên hệ tư vấn trong thời gian sớm nhất.`);
     closeDetail();
+    this.reset();
 });
+
+// Cập nhật lại danh sách các nút tương tác mới thêm ở phần Footer
+initCustomCursor();

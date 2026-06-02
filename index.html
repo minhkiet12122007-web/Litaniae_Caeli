@@ -9,7 +9,8 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght=700;800&family=Inter:wght=300;400;600&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&family=Syne:wght@700;800&display=swap"
         rel="stylesheet">
 </head>
 
@@ -18,35 +19,40 @@
     <div class="custom-cursor" id="cursor"></div>
 
     <main id="main-page">
-        <section class="hero">
+        <section class="hero hover-hero-trigger">
+            <div class="hero-background-artwork">
+                <img src="tranhmain.jpg" alt="Christian Antique Artwork">
+            </div>
+
             <div class="hero-top-right-image hover-target" data-hover="ARTWORK">
                 <img src="logo.jpg" alt="Litaniae Main Artwork">
             </div>
 
             <div class="hero-title-wrapper">
-                <h1 class="hero-title">LITANIAE</h1>
-                <h1 class="hero-title text-stroke">CAELI</h1>
+                <h1 class="hero-title main-solid-text">LITANIAE</h1>
+                <h1 class="hero-title text-stroke animate-stroke">
+                    <span class="stroke-inner"><i>CAELI</i></span>
+                </h1>
             </div>
 
             <div class="hero-footer">
                 <div class="hero-bio">
-                    <p>Vocatio ad Transcendentiam (A call to transcendence)
-                        Nơi lan tỏa vẻ đẹp của Nghệ thuật Công giáo Truyền thống.</p>
+                    <p>Bộ sưu tập không gian nghệ thuật tối giản, nơi tôn vinh những tác phẩm điêu khắc và ý tưởng kiến
+                        trúc vượt thời gian.</p>
                 </div>
-                <div class="scroll-indicator">
-                    <span>CUỘN ĐỂ KHÁM PHÁ</span>
+                <div class="hero-meta">
+                    <p class="meta-label">CREATIVE DIRECTION</p>
+                    <p class="meta-value">STUDIO LITANIAE • 2026</p>
                 </div>
             </div>
         </section>
 
-        <!-- KHU VỰC THÀNH VIÊN NHÓM -->
         <section class="gallery-section">
             <p class="section-tag">// ĐỘI NGŨ SÁNG TẠO</p>
             <div class="team-grid">
 
-                <!-- Thành viên 1 -->
                 <div class="team-card hover-target" data-hover="XEM"
-                    onclick="openMemberDetail('Đăng Khôi', 'Trưởng Nhóm / Lead Developer', 'Đang theo học tại trường Đại Học Bách Khoa HCM, đam mê âm nhạc và kỹ thuật', '474802882_2032205493955279_142606396455532337_n.jpg')">
+                    onclick="openMember('Đăng Khôi', 'Trưởng Nhóm / Lead Developer', 'Đang theo học tại trường Đại Học Bách Khoa HCM, đam mê âm nhạc và kỹ thuật', '474802882_2032205493955279_142606396455532337_n.jpg')">
                     <div class="team-img-wrapper">
                         <img src="474802882_2032205493955279_142606396455532337_n.jpg" alt="Member 1">
                     </div>
@@ -56,9 +62,8 @@
                     </div>
                 </div>
 
-                <!-- Thành viên 2 -->
                 <div class="team-card hover-target" data-hover="XEM"
-                    onclick="openMemberDetail('Nguyễn Minh Kiệt', 'UI/UX Designer', 'Đam mê viết code và tạo các chương trình.', '532950174_789521837352255_2466299959745146514_n.jpg')">
+                    onclick="openMember('Nguyễn Minh Kiệt', 'UI/UX Designer', 'Đam mê viết code và tạo các chương trình.', '532950174_789521837352255_2466299959745146514_n.jpg')">
                     <div class="team-img-wrapper">
                         <img src="532950174_789521837352255_2466299959745146514_n.jpg" alt="Member 2">
                     </div>
@@ -68,9 +73,8 @@
                     </div>
                 </div>
 
-                <!-- Thành viên 3 -->
                 <div class="team-card hover-target" data-hover="XEM"
-                    onclick="openMemberDetail('Gia Khánh', 'poem', '', '572390786_1191962512827200_3098160770003406042_n.jpg')">
+                    onclick="openMember('Gia Khánh', 'poem', '', '572390786_1191962512827200_3098160770003406042_n.jpg')">
                     <div class="team-img-wrapper">
                         <img src="572390786_1191962512827200_3098160770003406042_n.jpg" alt="Member 3">
                     </div>
@@ -80,9 +84,8 @@
                     </div>
                 </div>
 
-                <!-- Thành viên 4 -->
                 <div class="team-card hover-target" data-hover="XEM"
-                    onclick="openMemberDetail('Bảo Khánh', 'Designer', '', '')">
+                    onclick="openMember('Bảo Khánh', 'Designer', '', '')">
                     <div class="team-img-wrapper">
                         <img src="" alt="Member 4">
                     </div>
@@ -92,8 +95,7 @@
                     </div>
                 </div>
 
-                <!-- Thành viên 5 -->
-                <div class="team-card hover-target" data-hover="XEM" onclick="openMemberDetail('Mai Uyên', '', '', '')">
+                <div class="team-card hover-target" data-hover="XEM" onclick="openMember('Mai Uyên', '', '', '')">
                     <div class="team-img-wrapper">
                         <img src="" alt="Member 5">
                     </div>
@@ -106,13 +108,12 @@
             </div>
         </section>
 
-        <!-- SHOWCASE SẢN PHẨM HOÀN THIỆN -->
         <section class="products-section">
             <p class="section-tag">// SHOWCASE HÀNG ĐỘC QUYỀN</p>
             <div class="awwwards-product-list">
 
                 <div class="product-row hover-target" data-hover="MUA"
-                    onclick="openDetail('Litaniae Lux Candle', '35,000 VND', 'Dòng nến thơm nghệ thuật cao cấp được chế tác thủ công hoàn toàn từ sáp đậu nành tự nhiên. Hương thơm thanh khiết mang lại cảm giác bình an, thư thái sâu lắng, tôn vinh nét đẹp không gian sống cổ điển và tĩnh lặng.', 'candle.jpg')">
+                    onclick="openProduct('Litaniae Lux Candle', '35,000 VND', 'Dòng nến thơm nghệ thuật cao cấp được chế tác thủ công hoàn toàn từ sáp đậu nành tự nhiên. Hương thơm thanh khiết mang lại cảm giác bình an, thư thái sâu lắng, tôn vinh nét đẹp không gian sống cổ điển và tĩnh lặng.', 'candle.jpg')">
                     <div class="prod-meta">01 / ARTISAN CANDLE</div>
                     <h2 class="prod-title">Litaniae Lux Candle</h2>
                     <span class="prod-arrow">↗</span>
@@ -120,20 +121,30 @@
 
             </div>
         </section>
+
+        <footer class="site-footer">
+            <div class="footer-divider"></div>
+            <div class="footer-container">
+                <p class="footer-copyright">© 2026 LITANIAE CAELI. ALL RIGHTS RESERVED.</p>
+
+                <a href="https://www.facebook.com/litaniaecaeli" target="_blank" rel="noopener noreferrer"
+                    class="footer-fb-link hover-target" data-hover="GHÉ THĂM">
+                    <svg class="fb-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                    </svg>
+                    <span class="fb-page-name">Litaniae Caeli</span>
+                </a>
+            </div>
+        </footer>
     </main>
 
-    <!-- TRANG OVERLAY CHI TIẾT ĐỘNG (DÙNG CHUNG) -->
-    <div class="detail-overlay-page hidden" id="detail-page">
-        <!-- Nút Close cố định tinh tế góc phải -->
-        <div class="close-fixed-zone hover-target" data-hover="ĐÓNG" onclick="closeDetail()">
-            <span>← CLOSE</span>
-        </div>
+    <div id="detail-page" class="detail-overlay-page hidden">
+        <button class="close-fixed-zone hover-target" data-hover="ĐÓNG" onclick="closeDetail()">CLOSE ✕</button>
 
-        <div class="detail-container" id="detail-container-layout">
-            <div class="detail-gallery" id="detail-gallery-box">
+        <div id="detail-layout-container" class="detail-container">
+            <div class="detail-gallery">
                 <img id="detail-img" src="" alt="Detail View">
-
-                <!-- Icon cuộn chuột hướng dẫn (chỉ hiện ở bản Concept) -->
                 <div class="scroll-down-hint" id="scroll-hint">
                     <span class="mouse-icon"></span>
                     <p>SCROLL DOWN</p>
@@ -143,9 +154,9 @@
             <div class="detail-content" id="detail-content-box">
                 <h1 id="detail-name" class="detail-main-title">Tên tiêu đề</h1>
                 <p id="detail-price" class="detail-main-price">Giá hoặc vị trí chức vụ</p>
-                <p id="detail-desc" class="detail-main-desc">Nội dung văn bản chi tiết...</p>
 
-                <!-- Form đặt hàng cao cấp (Sẽ ẩn nếu mở xem Thành Viên) -->
+                <div id="detail-desc" class="detail-main-desc">Nội dung văn bản chi tiết...</div>
+
                 <form id="orderForm" class="awwwards-form">
                     <input type="hidden" id="form-product-name">
                     <div class="input-line">
