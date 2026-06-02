@@ -865,36 +865,45 @@ body::before {
     letter-spacing: 1px;
 }
 
-/* Khối liên kết Facebook gồm Logo + Tên */
-.footer-fb-link {
+/* Khối group chứa cả 3 liên kết mạng xã hội */
+.footer-socials-group {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 32px;
+    /* Khoảng cách giữa các nút mạng xã hội */
+}
+
+/* Định dạng cấu trúc chung cho từng item liên kết (Icon + Chữ) */
+.footer-social-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     text-decoration: none;
     color: #0D0D0D;
     transition: opacity 0.3s ease;
 }
 
-/* Định dạng logo Facebook */
-.footer-fb-link .fb-icon {
-    width: 20px;
-    height: 20px;
+/* Định dạng chuẩn kích thước cho tất cả các SVG Icon */
+.footer-social-link .social-icon {
+    width: 18px;
+    height: 18px;
     fill: #0D0D0D;
+    /* Đổ màu đen charcoal đồng bộ cho SVG fill */
     object-fit: contain;
     transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Định dạng tên trang */
-.footer-fb-link .fb-page-name {
+/* Định dạng font chữ hiển thị bên cạnh Icon */
+.footer-social-link .social-name {
     font-family: 'Playfair Display', serif;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 400;
     letter-spacing: 0.5px;
     position: relative;
 }
 
-/* Hiệu ứng gạch chân tự động chạy ra khi hover */
-.footer-fb-link .fb-page-name::after {
+/* Hiệu ứng đường gạch chân tinh tế chạy ra khi hover */
+.footer-social-link .social-name::after {
     content: '';
     position: absolute;
     bottom: -2px;
@@ -905,21 +914,27 @@ body::before {
     transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Hiệu ứng tương tác mượt mà */
-.footer-fb-link:hover .fb-icon {
-    transform: scale(1.15) rotate(8deg);
+/* Hiệu ứng tương tác mượt mà khi di chuột vào */
+.footer-social-link:hover .social-icon {
+    transform: scale(1.18) rotate(6deg);
 }
 
-.footer-fb-link:hover .fb-page-name::after {
+.footer-social-link:hover .social-name::after {
     width: 100%;
 }
 
-/* Tối ưu hóa hiển thị Responsive trên điện thoại */
-@media (max-width: 600px) {
+/* Tối ưu hóa hiển thị Responsive trên thiết bị di động nhỏ */
+@media (max-width: 768px) {
     .footer-container {
         flex-direction: column-reverse;
-        gap: 25px;
+        gap: 30px;
         align-items: center;
         text-align: center;
+    }
+
+    .footer-socials-group {
+        gap: 24px;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 }

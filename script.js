@@ -36,6 +36,11 @@ function onMouseEnter(e) {
     cursor.innerText = e.currentTarget.getAttribute('data-hover') || '';
 }
 
+function onMouseLeave() {
+    cursor.classList.remove('active');
+    cursor.innerText = '';
+}
+
 // Khởi chạy lắng nghe cursor lần đầu tiên
 initCustomCursor();
 
@@ -134,5 +139,5 @@ document.getElementById('orderForm').addEventListener('submit', function (e) {
     this.reset();
 });
 
-// Cập nhật lại danh sách các nút tương tác mới thêm ở phần Footer
+// Cập nhật lại danh sách các nút tương tác mới thêm ở phần Footer mạng xã hội
 initCustomCursor();
