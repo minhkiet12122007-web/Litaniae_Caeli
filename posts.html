@@ -114,27 +114,44 @@
             <h1>Các bài viết mới nhất</h1>
         </div>
 
-        <div class="post-magazine-grid">
-            {# Vòng lặp tự động đọc từng bài viết từ file JSON truyền qua biến posts #}
-            {% if posts %}
-            {% for post in posts %}
-            <div class="post-magazine-card">
-                <div class="post-meta-date">POSTED ON: {{ post.date }}</div>
-                <h2 class="post-magazine-title">{{ post.title }}</h2>
-                <p class="post-magazine-excerpt">{{ post.excerpt }}</p>
-                <a href="{{ post.url }}" target="_blank" class="btn-read-fb hover-target" data-hover="FACEBOOK">ĐỌC TRÊN
-                    FACEBOOK ↗</a>
-            </div>
-            {% endfor %}
-            {% else %}
-            <p style="grid-column: 1 / -1; text-align: center; color: #888; font-family: sans-serif;">
-                Hiện tại chưa có dữ liệu bài viết mới.
-            </p>
-            {% endif %}
+        <div class="post-magazine-grid" id="posts-container">
         </div>
     </div>
 
+    <script src="posts_data.js"></script>
     <script src="script.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const container = document.getElementById("posts-container");
+
+            // data_posts lấy trực tiếp từ file posts_data.js nên không bao giờ bị lỗi CORS
+            if (typeof data_posts !== "undefined" && data_posts.length > 0) {
+                container.innerHTML = ""; // Xóa rỗng container
+
+                data_posts.forEach(post => {
+                    const card = document.createElement("div");
+                    card.className = "post-magazine-card";
+
+                    card.innerHTML = `
+                        <div class="post-meta-date">POSTED ON: ${post.date}</div>
+                        <h2 class="post-magazine-title">${post.title}</h2>
+                        <p class="post-magazine-excerpt">${post.excerpt}</p>
+                        <a href="${post.url}" target="_blank" class="btn-read-fb hover-target" data-hover="FACEBOOK">ĐỌC TRÊN FACEBOOK ↗</a>
+                    `;
+
+                    container.appendChild(card);
+                });
+
+                // Gọi lại hiệu ứng chuột của bạn nếu có
+                if (typeof initCursor === "function") {
+                    initCursor();
+                }
+            } else {
+                container.innerHTML = `<p style="grid-column: 1 / -1; text-align: center; color: #888; font-family: sans-serif;">Hiện tại chưa có dữ liệu bài viết mới.</p>`;
+            }
+        });
+    </script>
 </body>
 
 </html>
