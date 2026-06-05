@@ -1,6 +1,11 @@
 /* ==========================================================================
    1. RESET & HIỆU ỨNG NỀN NGHỆ THUẬT TOÀN DIỆN
    ========================================================================== */
+html {
+    scroll-behavior: smooth;
+    /* Thêm hiệu ứng cuộn trang mượt mà khi click Liên hệ */
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -70,6 +75,113 @@ body::before {
 }
 
 /* ==========================================================================
+   NEW: NÂNG CẤP THANH HEADER NAVIGATION BIẾN THÀNH FORM EDITORIAL
+   ========================================================================== */
+.site-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 30px 6vw;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.nav-logo {
+    font-family: 'EB Garamond', serif;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #0D0D0D;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    list-style: none;
+}
+
+.nav-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #0D0D0D;
+    text-decoration: none;
+    padding: 10px 0;
+    display: inline-block;
+    position: relative;
+    transition: opacity 0.3s ease;
+}
+
+.nav-link .arrow-down {
+    font-size: 9px;
+    margin-left: 2px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+/* Dropdown định vị và hiệu ứng xuất hiện mượt */
+.dropdown-trigger {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(15px);
+    background-color: #FAF9F6;
+    border: 1px solid rgba(13, 13, 13, 0.08);
+    list-style: none;
+    min-width: 160px;
+    padding: 12px 0;
+    opacity: 0;
+    visibility: hidden;
+    box-shadow: 0 15px 35px rgba(13, 13, 13, 0.05);
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        visibility 0.4s;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 24px;
+    color: #444444;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-menu a:hover {
+    background-color: rgba(13, 13, 13, 0.03);
+    color: #0D0D0D;
+}
+
+/* Trạng thái Hover của Dropdown kích hoạt hiệu ứng mượt mà */
+.dropdown-trigger:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(5px);
+}
+
+.dropdown-trigger:hover .nav-link .arrow-down {
+    transform: rotate(180deg);
+}
+
+
+/* ==========================================================================
    2. HERO SECTION & TYPOGRAPHY EFFECT
    ========================================================================== */
 .hero {
@@ -77,22 +189,20 @@ body::before {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 6vh 6vw;
+    padding: 15vh 6vw 6vh 6vw;
+    /* Tăng padding top để nhường chỗ hoàn toàn cho Navbar mới */
     position: relative;
     z-index: 2;
 }
 
-/* 🌟 CẢI TIẾN: Căn chỉnh hình ảnh tranh cổ ở vị trí vàng, hiển thị nghệ thuật đẹp mắt */
 .hero-background-artwork {
     position: absolute;
-    top: 50%;
+    top: 52%;
     left: 60%;
-    /* Dịch sang phải một chút để lộ rõ khối bố cục tranh độc lập với text chính */
     transform: translate(-50%, -50%);
     width: 62vw;
     height: 80vh;
     opacity: 0.22;
-    /* Tăng nhẹ độ đậm để tranh rõ ràng, sắc nét tinh tế hơn */
     mix-blend-mode: multiply;
     pointer-events: none;
     z-index: -1;
@@ -106,11 +216,9 @@ body::before {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    /* Đảm bảo tranh giữ nguyên tỷ lệ gốc không bị méo nát */
     filter: sepia(25%) contrast(1.15) brightness(0.98);
 }
 
-/* Hiệu ứng tương tác nhẹ khi hover vào vùng Hero */
 .hero:hover .hero-background-artwork {
     transform: translate(-49%, -51%) scale(1.01);
     opacity: 0.25;
@@ -118,7 +226,7 @@ body::before {
 
 .hero-top-right-image {
     position: absolute;
-    top: 5vh;
+    top: 14vh;
     right: 6vw;
     width: 80px;
     z-index: 10;
@@ -137,7 +245,7 @@ body::before {
 }
 
 .hero-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'EB Garamond', serif;
     font-size: 11vw;
     font-weight: 400;
     line-height: 0.85;
@@ -148,15 +256,18 @@ body::before {
     color: #0D0D0D;
 }
 
+.text-deep-blue {
+    color: #1A4332;
+}
+
 .text-stroke {
-    font-family: 'Playfair Display', serif;
+    font-family: 'EB Garamond', serif;
 }
 
 .text-stroke i {
     font-style: italic;
 }
 
-/* 🌟 SỬA TRIỆT ĐỂ LỖI CHỮ I KHÔNG TÔ FULL MÀU: Đồng bộ hóa font-style italic sâu vào inner stroke */
 .animate-stroke .stroke-inner {
     position: relative;
     color: transparent;
@@ -165,7 +276,6 @@ body::before {
     display: inline-block;
 }
 
-/* Ép text giả lập mang thuộc tính i (italic) giống hệt text gốc để khít từng pixel đơn lẻ */
 .animate-stroke .stroke-inner::before {
     content: "CAELI";
     position: absolute;
@@ -176,7 +286,6 @@ body::before {
     color: #0D0D0D;
     -webkit-text-stroke: 0px transparent;
     font-style: italic;
-    /* Bảo đảm chữ I và toàn bộ chữ nghiêng đều khít nhau */
     overflow: hidden;
     transition: height 0.6s cubic-bezier(0.19, 1, 0.22, 1);
 }
@@ -185,7 +294,6 @@ body::before {
     height: 100%;
 }
 
-/* Chữ chạy nền sang trọng mờ ảo */
 .hero::before {
     content: "SACRED ART • TRADITION • LITANIAE CAELI • VOCATIO AD TRANSCENDENTIAM • ";
     position: absolute;
@@ -238,7 +346,7 @@ body::before {
 }
 
 /* ==========================================================================
-   3. CONCEPT PRODUCTS SECTION (DANH SÁCH TÁC PHẨM PHONG CÁCH CHUẨN AWWWARDS)
+   3. CONCEPT PRODUCTS SECTION
    ========================================================================== */
 .products-section {
     padding: 120px 8vw;
@@ -283,7 +391,7 @@ body::before {
 }
 
 .prod-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'EB Garamond', serif;
     font-size: 3.2vw;
     font-weight: 400;
     color: #0D0D0D;
@@ -331,7 +439,6 @@ body::before {
     align-items: center;
 }
 
-/* Tạo nhịp so le nghệ thuật cao cấp giữa các cột thẻ thành viên */
 .team-card:nth-child(3n+1) {
     transform: translateY(0);
 }
@@ -385,7 +492,7 @@ body::before {
 }
 
 .team-info-brief h3 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'EB Garamond', serif;
     font-size: 18px;
     font-weight: 500;
     color: #444444;
@@ -403,7 +510,6 @@ body::before {
     text-align: center;
 }
 
-/* Decorative small underline for member cards */
 .team-info-brief::after {
     content: '';
     display: block;
@@ -415,7 +521,7 @@ body::before {
 }
 
 /* ==========================================================================
-   5. OVERLAY CHI TIẾT ĐỘC BẢN CAO CẤP (EDITORIAL MAGAZINE STYLE)
+   5. OVERLAY CHI TIẾT ĐỘC BẢN CAO CẤP
    ========================================================================== */
 .detail-overlay-page {
     position: fixed;
@@ -428,7 +534,6 @@ body::before {
     transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Hiệu ứng trượt vào êm ái quyến rũ từ phải qua */
 .detail-overlay-page.slide-from-right {
     transform: translateX(40px);
 }
@@ -447,7 +552,6 @@ body::before {
     display: none !important;
 }
 
-/* Nút Close cố định tinh tế */
 .close-fixed-zone {
     position: fixed;
     top: 40px;
@@ -470,7 +574,6 @@ body::before {
     border-color: #0D0D0D;
 }
 
-/* Layout Mặc định: Dành cho Concept tác phẩm (Full-width Gallery trượt dọc) */
 .detail-container {
     display: flex;
     flex-direction: column;
@@ -546,7 +649,6 @@ body::before {
     padding: 0 24px;
 }
 
-/* 🌟 TÁI CẤU TRÚC LAYOUT THÀNH VIÊN: BIẾN THÀNH DẠNG TẠP CHÍ EDITORIAL SANG TRỌNG */
 .detail-container.member-layout {
     display: grid;
     grid-template-columns: 45% 55%;
@@ -571,9 +673,8 @@ body::before {
     max-width: 100%;
 }
 
-/* Nâng tầm kiểu chữ & khoảng trống cho khối thông tin */
 .detail-main-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'EB Garamond', serif;
     font-size: 3.8vw;
     font-weight: 400;
     line-height: 1.15;
@@ -627,7 +728,6 @@ body::before {
     border-left: 1px solid rgba(13, 13, 13, 0.12);
 }
 
-/* Hiệu ứng xuất hiện mượt mà đuổi nhau của văn bản */
 .detail-main-title,
 .detail-main-price,
 .detail-main-desc,
@@ -661,7 +761,6 @@ body::before {
     transition-delay: 0.4s;
 }
 
-/* Member layout: entrance from right and refined typography */
 .detail-container.member-layout .detail-main-title,
 .detail-container.member-layout .detail-main-price,
 .detail-container.member-layout .detail-main-desc,
@@ -694,7 +793,6 @@ body::before {
     transition-delay: 0.38s;
 }
 
-/* Refined typography for member view */
 .detail-container.member-layout .detail-main-title {
     font-weight: 600;
     letter-spacing: -0.02em;
@@ -707,7 +805,6 @@ body::before {
     font-weight: 300;
 }
 
-/* Form mua hàng cao cấp */
 .awwwards-form .input-line {
     border-bottom: 1px solid rgba(13, 13, 13, 0.12);
     margin-bottom: 35px;
@@ -767,6 +864,7 @@ body::before {
         gap: 40px;
         margin-top: 100px;
         padding: 0 8vw;
+        align-items: center;
     }
 
     .detail-container.member-layout .detail-gallery {
@@ -797,15 +895,22 @@ body::before {
 }
 
 @media (max-width: 768px) {
+    .site-header {
+        padding: 20px 6vw;
+    }
+
+    .nav-links {
+        gap: 20px;
+    }
+
     .hero {
-        padding: 8vh 6vw 4vh 6vw;
+        padding: 18vh 6vw 4vh 6vw;
     }
 
     .hero-title {
         font-size: 13vw;
     }
 
-    /* Đảm bảo ảnh nền vẫn cân đối trên các thiết bị di động nhỏ */
     .hero-background-artwork {
         width: 85vw;
         top: 45%;
@@ -865,15 +970,12 @@ body::before {
     letter-spacing: 1px;
 }
 
-/* Khối group chứa cả 3 liên kết mạng xã hội */
 .footer-socials-group {
     display: flex;
     align-items: center;
     gap: 32px;
-    /* Khoảng cách giữa các nút mạng xã hội */
 }
 
-/* Định dạng cấu trúc chung cho từng item liên kết (Icon + Chữ) */
 .footer-social-link {
     display: flex;
     align-items: center;
@@ -883,26 +985,22 @@ body::before {
     transition: opacity 0.3s ease;
 }
 
-/* Định dạng chuẩn kích thước cho tất cả các SVG Icon */
 .footer-social-link .social-icon {
     width: 18px;
     height: 18px;
     fill: #0D0D0D;
-    /* Đổ màu đen charcoal đồng bộ cho SVG fill */
     object-fit: contain;
     transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Định dạng font chữ hiển thị bên cạnh Icon */
 .footer-social-link .social-name {
-    font-family: 'Playfair Display', serif;
+    font-family: 'EB Garamond', serif;
     font-size: 15px;
     font-weight: 400;
     letter-spacing: 0.5px;
     position: relative;
 }
 
-/* Hiệu ứng đường gạch chân tinh tế chạy ra khi hover */
 .footer-social-link .social-name::after {
     content: '';
     position: absolute;
@@ -914,7 +1012,6 @@ body::before {
     transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Hiệu ứng tương tác mượt mà khi di chuột vào */
 .footer-social-link:hover .social-icon {
     transform: scale(1.18) rotate(6deg);
 }
@@ -923,7 +1020,6 @@ body::before {
     width: 100%;
 }
 
-/* Tối ưu hóa hiển thị Responsive trên thiết bị di động nhỏ */
 @media (max-width: 768px) {
     .footer-container {
         flex-direction: column-reverse;

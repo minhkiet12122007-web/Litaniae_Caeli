@@ -10,13 +10,38 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&family=Syne:wght@700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&family=Syne:wght@700;800&display=swap"
         rel="stylesheet">
 </head>
 
 <body>
 
     <div class="custom-cursor" id="cursor"></div>
+
+    <header class="site-header">
+        <nav class="nav-container">
+            <div class="nav-logo hover-target" data-hover="LITANIAE">
+                LC
+            </div>
+            <ul class="nav-links">
+                <li><a href="#main-page" class="nav-link hover-target" data-hover="XEM">Trang chủ</a></li>
+                <li class="dropdown-trigger">
+                    <a href="#" class="nav-link hover-target" data-hover="MỞ">Tài liệu <span
+                            class="arrow-down">▾</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="hover-target" data-hover="ĐỌC"
+                                onclick="openDocumentZone('Văn kiện Litaniae', 'TÀI LIỆU CHÍNH THỨC', 'Đây là nơi lưu trữ các văn kiện chính thức của Litaniae Caeli về định hướng nghệ thuật, các nghiên cứu chuyên sâu về kiến trúc cổ điển và các tư liệu truyền thống quý giá được nhóm biên soạn và dịch thuật.', 'tranhmain.jpg')">Văn
+                                kiện</a></li>
+                        <li><a href="posts.html" class="hover-target" data-hover="XEM">Bài post</a></li>
+                        <li><a href="#" class="hover-target" data-hover="HỌC"
+                                onclick="openDocumentZone('Hướng dẫn Nghiên cứu', 'CẨM NANG NGHỆ THUẬT', 'Hệ thống các bài hướng dẫn chi tiết dành cho thành viên và bạn đọc yêu mến nghệ thuật thánh thiêng. Bao gồm phương pháp phân tích tranh cổ, nhận diện điêu khắc kiến trúc và cách thức đóng góp nội dung cho nhóm.', 'logo.jpg')">Hướng
+                                dẫn</a></li>
+                    </ul>
+                </li>
+                <li><a href="#site-footer" class="nav-link hover-target" data-hover="CHÁT">Liên hệ</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <main id="main-page">
         <section class="hero hover-hero-trigger">
@@ -29,7 +54,7 @@
             </div>
 
             <div class="hero-title-wrapper">
-                <h1 class="hero-title main-solid-text">LITANIAE</h1>
+                <h1 class="hero-title main-solid-text text-deep-blue">LITANIAE</h1>
                 <h1 class="hero-title text-stroke animate-stroke">
                     <i>CAELI</i>
                 </h1>
@@ -52,56 +77,55 @@
             <div class="team-grid">
 
                 <div class="team-card hover-target" data-hover="XEM"
-                    onclick="openMember('Đăng Khôi', 'Trưởng Nhóm / Lead Developer', 'Đang theo học tại trường Đại Học Bách Khoa HCM, đam mê âm nhạc và kỹ thuật', '474802882_2032205493955279_142606396455532337_n.jpg')">
+                    onclick="openMember('Đăng Khôi', 'FOUNDER', 'Đang theo học tại trường Đại Học Bách Khoa HCM, đam mê âm nhạc và kỹ thuật', '474802882_2032205493955279_142606396455532337_n.jpg')">
                     <div class="team-img-wrapper">
                         <img src="474802882_2032205493955279_142606396455532337_n.jpg" alt="Member 1">
                     </div>
                     <div class="team-info-brief">
                         <h3>Đăng Khôi</h3>
-                        <p>Leader / Dev</p>
+                        <p>FOUNDER</p>
                     </div>
                 </div>
 
                 <div class="team-card hover-target" data-hover="XEM"
-                    onclick="openMember('Nguyễn Minh Kiệt', 'UI/UX Designer', 'Đam mê viết code và tạo các chương trình.', '532950174_789521837352255_2466299959745146514_n.jpg')">
+                    onclick="openMember('Nguyễn Minh Kiệt', 'ADMIN', 'Đam mê viết code và tạo các chương trình.', '532950174_789521837352255_2466299959745146514_n.jpg')">
                     <div class="team-img-wrapper">
                         <img src="532950174_789521837352255_2466299959745146514_n.jpg" alt="Member 2">
                     </div>
                     <div class="team-info-brief">
                         <h3>Nguyễn Minh Kiệt</h3>
-                        <p>UI/UX Designer</p>
+                        <p>ADMIN</p>
                     </div>
                 </div>
 
                 <div class="team-card hover-target" data-hover="XEM"
-                    onclick="openMember('Gia Khánh', 'poem', '', '572390786_1191962512827200_30981607700034060042_n.jpg')">
+                    onclick="openMember('Gia Khánh', 'FOUNDER', '', 'GiaKhanh.jpg')">
                     <div class="team-img-wrapper">
-                        <img src="572390786_1191962512827200_30981607700034060042_n.jpg" alt="Member 3">
+                        <img src="GiaKhanh.jpg" alt="Member 3">
                     </div>
                     <div class="team-info-brief">
                         <h3>Gia Khánh</h3>
-                        <p>poem</p>
+                        <p>FOUNDER</p>
                     </div>
                 </div>
 
-                <div class="team-card hover-target" data-hover="XEM"
-                    onclick="openMember('Bảo Khánh', 'Designer', '', '')">
+                <div class="team-card hover-target" data-hover="XEM" onclick="openMember('Bảo Khánh', 'ADMIN', '', '')">
                     <div class="team-img-wrapper">
                         <img src="" alt="Member 4">
                     </div>
                     <div class="team-info-brief">
                         <h3>Bảo Khánh</h3>
-                        <p>Designer</p>
+                        <p>ADMIN</p>
                     </div>
                 </div>
 
-                <div class="team-card hover-target" data-hover="XEM" onclick="openMember('Mai Uyên', '', '', '')">
+                <div class="team-card hover-target" data-hover="XEM" onclick="openMember('Mai Uyên', 'ADMIN', '', '')">
                     <div class="team-img-wrapper">
                         <img src="" alt="Member 5">
                     </div>
                     <div class="team-info-brief">
                         <h3>Mai Uyên</h3>
-                        <p></p>
+                        <p>ADMIN</p>
                     </div>
                 </div>
 
@@ -122,13 +146,12 @@
             </div>
         </section>
 
-        <footer class="site-footer">
+        <footer id="site-footer" class="site-footer">
             <div class="footer-divider"></div>
             <div class="footer-container">
                 <p class="footer-copyright">© 2026 LITANIAE CAELI. ALL RIGHTS RESERVED.</p>
 
                 <div class="footer-socials-group">
-                    <!-- Facebook -->
                     <a href="https://www.facebook.com/litaniaecaeli" target="_blank" rel="noopener noreferrer"
                         class="footer-social-link hover-target" data-hover="GHÉ THĂM">
                         <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -138,7 +161,6 @@
                         <span class="social-name">Facebook</span>
                     </a>
 
-                    <!-- TikTok (Updated handle from image_557802.png) -->
                     <a href="https://www.tiktok.com/@litaniae.caeli?fbclid=IwY2xjawSLyNVleHRuA2FlbQIxMABicmlkETEyMmVOQ05UdE9zVGRnOWJVc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHuMMQNB0OFIQ24pAWadIpl0Jj4GIsiYshRyRZvYXUMAvlTbUrYiAPZ_YO72f_aem_CL4jDjycezwqxUKwfVXiyQ"
                         target="_blank" rel="noopener noreferrer" class="footer-social-link hover-target"
                         data-hover="GHÉ THĂM">
@@ -149,7 +171,6 @@
                         <span class="social-name">TikTok</span>
                     </a>
 
-                    <!-- Gmail (Updated from image_557802.png) -->
                     <a href="mailto:litaniaecaeli@gmail.com" class="footer-social-link hover-target"
                         data-hover="LIÊN HỆ">
                         <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
