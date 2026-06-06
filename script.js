@@ -1,55 +1,4 @@
-// ─── 1. QUẢN LÝ CUSTOM CURSOR ĐUỔI BẮT SIÊU MƯỢT ───
-const cursor = document.getElementById('cursor');
-let mouseX = 0, mouseY = 0;
-let cursorX = 0, cursorY = 0;
-
-document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-});
-
-function animateCursor() {
-    cursorX += (mouseX - cursorX) * 1;
-    cursorY += (mouseY - cursorY) * 1;
-
-    cursor.style.left = cursorX + 'px';
-    cursor.style.top = cursorY + 'px';
-
-    requestAnimationFrame(animateCursor);
-}
-requestAnimationFrame(animateCursor);
-
-function initCustomCursor() {
-    const hoverTargets = document.querySelectorAll('.hover-target');
-
-    hoverTargets.forEach(target => {
-        target.removeEventListener('mouseenter', onMouseEnter);
-        target.removeEventListener('mouseleave', onMouseLeave);
-
-        target.addEventListener('mouseenter', onMouseEnter);
-        target.addEventListener('mouseleave', onMouseLeave);
-    });
-}
-
-function onMouseEnter(e) {
-    cursor.classList.add('active');
-    cursor.innerText = e.currentTarget.getAttribute('data-hover') || '';
-}
-
-// Hàm bổ sung quét chuột mượt mà cho toàn trang
-function onMouseLeave() {
-    cursor.classList.remove('active');
-    cursor.innerText = '';
-}
-
-initCustomCursor();
-
-document.querySelector('.site-header').addEventListener('mouseenter', () => {
-    initCustomCursor();
-});
-
-
-// ─── 2. ĐIỀU HƯỚNG MỞ OVERLAY CHI TIẾT ───
+// ─── 1. QUẢN LÝ POPUP CHI TIẾT SẢN PHẨM & THÀNH VIÊN (GIỮ NGUYÊN) ───
 
 // Mở chi tiết Tác phẩm Concept (Dạng cuộn dọc Full-width truyền thống)
 function openProduct(name, meta, desc, imgUrl) {
@@ -94,7 +43,7 @@ function openMember(name, position, bio, imgUrl) {
     executeOpenSequence(detailPage);
 }
 
-// VIẾT THÊM: Hàm xử lý mở hiển thị Văn kiện và Hướng dẫn tối ưu giao diện Split-view nghệ thuật
+// Hàm xử lý mở hiển thị Văn kiện và Hướng dẫn tối ưu giao diện Split-view nghệ thuật
 function openDocumentZone(title, subtitle, bodyContent, imgUrl) {
     openMember(title, subtitle, bodyContent, imgUrl);
 }
@@ -105,14 +54,13 @@ function executeOpenSequence(detailPage) {
 
     setTimeout(() => {
         detailPage.classList.add('active-page');
-        initCustomCursor();
     }, 20);
 
     document.body.style.overflow = 'hidden';
 }
 
 
-// ─── 3. ĐÓNG OVERLAY CHI TIẾT ───
+// ─── 2. ĐÓNG OVERLAY CHI TIẾT (GIỮ NGUYÊN) ───
 function closeDetail() {
     const detailPage = document.getElementById('detail-page');
     detailPage.classList.remove('active-page');
@@ -123,12 +71,10 @@ function closeDetail() {
     }, 600);
 
     document.body.style.overflow = 'auto';
-    cursor.classList.remove('active');
-    cursor.innerText = '';
 }
 
 
-// ─── 4. XỬ LÝ SUBMIT FORM ĐĂNG KÝ SỞ HỮU TÁC PHẨM ───
+// ─── 3. XỬ LÝ SUBMIT FORM ĐĂNG KÝ SỞ HỮU TÁC PHẨM (GIỮ NGUYÊN) ───
 document.getElementById('orderForm').addEventListener('submit', function (e) {
     e.preventDefault();
     const productName = document.getElementById('form-product-name').value;
@@ -139,5 +85,3 @@ document.getElementById('orderForm').addEventListener('submit', function (e) {
     closeDetail();
     this.reset();
 });
-
-initCustomCursor();

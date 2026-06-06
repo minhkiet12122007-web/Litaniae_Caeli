@@ -10,8 +10,7 @@ html {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: none;
-    /* Ẩn chuột mặc định để dùng Custom Cursor */
+    /* SẾP ĐỔI: Dùng cursor bình thường, bỏ ẩn chuột mặc định */
 }
 
 body {
@@ -39,39 +38,9 @@ body::before {
     z-index: 99999;
 }
 
-/* 🖱️ CUSTOM CURSOR ĐUỔI BẮT CỰC MƯỢT */
+/* 🖱️ SẾP ĐỔI: Ẩn hoàn toàn cục hình tròn custom cursor to */
 .custom-cursor {
-    width: 8px;
-    height: 8px;
-    background: #0D0D0D;
-    border: 1px solid #FAF9F6;
-    border-radius: 50%;
-    position: fixed;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 200000;
-    mix-blend-mode: difference;
-    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-        height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-        background-color 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0px;
-    font-family: monospace;
-    color: #FAF9F6;
-    letter-spacing: 1px;
-    white-space: nowrap;
-}
-
-.custom-cursor.active {
-    width: 100px;
-    height: 100px;
-    background: #0D0D0D;
-    border-color: #0D0D0D;
-    mix-blend-mode: normal;
-    font-size: 10px;
-    font-weight: 500;
+    display: none !important;
 }
 
 /* ==========================================================================
@@ -99,6 +68,14 @@ body::before {
     font-weight: 600;
     letter-spacing: 2px;
     color: #0D0D0D;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ANIMATE MỤC LOGO KHI HOVER */
+.nav-logo:hover {
+    font-style: italic;
+    color: #1A4332;
+    transform: scale(1.05);
 }
 
 .nav-links {
@@ -119,7 +96,14 @@ body::before {
     padding: 10px 0;
     display: inline-block;
     position: relative;
-    transition: opacity 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ANIMATE CÁC MỤC MENU TRÊN THANH NAV KHI HOVER */
+.nav-link:hover {
+    color: #1A4332;
+    transform: translateY(-2px);
+    font-weight: 500;
 }
 
 .nav-link .arrow-down {
@@ -161,12 +145,17 @@ body::before {
     font-size: 12px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* ANIMATE CÁC MỤC CON TRONG DROPDOWN (Văn kiện, Bài post, Hướng dẫn) */
 .dropdown-menu a:hover {
     background-color: rgba(13, 13, 13, 0.03);
-    color: #0D0D0D;
+    color: #1A4332;
+    padding-left: 32px;
+    /* Đẩy chữ mượt mà sang phải */
+    font-style: italic;
+    /* Chuyển dạng nghệ thuật kiểu Litaniae */
 }
 
 /* Trạng thái Hover của Dropdown kích hoạt hiệu ứng mượt mà */
@@ -346,7 +335,7 @@ body::before {
 }
 
 /* ==========================================================================
-   3. CONCEPT PRODUCTS SECTION
+   3. CONCEPT PRODUCTS SECTION (ĐÃ CẬP NHẬT HOVER THEO Ý SẾP)
    ========================================================================== */
 .products-section {
     padding: 120px 8vw;
@@ -377,10 +366,12 @@ body::before {
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* ANIMATE TOÀN BỘ MỤC SẢN PHẨM KHI HOVER */
 .product-row:hover {
     padding-left: 30px;
     padding-right: 30px;
-    background-color: rgba(13, 13, 13, 0.015);
+    background-color: rgba(26, 67, 50, 0.02);
+    /* Thêm chút ánh xanh Litaniae nhẹ */
 }
 
 .prod-meta {
@@ -388,6 +379,13 @@ body::before {
     color: #666666;
     font-size: 12px;
     letter-spacing: 1px;
+    transition: color 0.4s ease, transform 0.4s ease;
+}
+
+/* ANIMATE MỤC SỐ THỨ TỰ SẢN PHẨM KHI HOVER */
+.product-row:hover .prod-meta {
+    color: #1A4332;
+    transform: translateX(5px);
 }
 
 .prod-title {
@@ -399,7 +397,9 @@ body::before {
 }
 
 .product-row:hover .prod-title {
-    transform: translateX(15px);
+    transform: translateX(15px) scale(1.02);
+    /* Thêm hiệu ứng phóng to chữ tinh tế */
+    color: #1A4332;
     font-style: italic;
 }
 
@@ -410,12 +410,12 @@ body::before {
 }
 
 .product-row:hover .prod-arrow {
-    color: #0D0D0D;
-    transform: translate(8px, -8px);
+    color: #1A4332;
+    transform: translate(8px, -8px) scale(1.1);
 }
 
 /* ==========================================================================
-   4. ĐỘI NGŨ SÁNG TẠO (MEMBER GRID LAYOUT)
+   4. ĐỘI NGŨ SÁNG TẠO (MEMBER GRID LAYOUT - ĐÃ CẬP NHẬT HOVER THEO Ý SẾP)
    ========================================================================== */
 .gallery-section {
     padding: 120px 8vw 160px 8vw;
@@ -437,6 +437,8 @@ body::before {
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
+    /* Thêm con trỏ tay để biết kích hoạt bấm được */
 }
 
 .team-card:nth-child(3n+1) {
@@ -451,8 +453,10 @@ body::before {
     transform: translateY(-20px);
 }
 
+/* ANIMATE TỔNG THỂ MỤC MEMBER CARD KHI HOVER */
 .team-card:hover {
-    transform: translateY(-8px) !important;
+    transform: translateY(-12px) scale(1.02) !important;
+    /* Nhấc cao thêm và phóng to nhẹ */
 }
 
 .team-img-wrapper {
@@ -463,6 +467,7 @@ body::before {
     border-radius: 6px;
     border: 1px solid rgba(13, 13, 13, 0.04);
     box-shadow: 0 10px 30px rgba(13, 13, 13, 0.04);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
 }
 
 .team-card img {
@@ -474,21 +479,27 @@ body::before {
 }
 
 .team-card:hover .team-img-wrapper {
-    transform: translateY(-8px) rotate(-0.4deg);
+    transform: translateY(-8px) rotate(-1deg);
+    /* Tăng góc xoay nhẹ nghệ thuật */
+    box-shadow: 0 20px 35px rgba(26, 67, 50, 0.1);
+    /* Đổ bóng có ánh xanh rêu đại diện nhóm */
 }
 
 .team-card:hover img {
-    transform: scale(1.06) rotate(-0.2deg);
-    filter: grayscale(0%) contrast(1) brightness(1);
+    transform: scale(1.08) rotate(0.5deg);
+    filter: grayscale(0%) contrast(1.02) brightness(1);
     box-shadow: 0 18px 40px rgba(10, 10, 10, 0.08);
-}
-
-.team-card:hover h3 {
-    color: #0D0D0D;
 }
 
 .team-info-brief {
     padding-top: 22px;
+    width: 100%;
+    transition: transform 0.4s ease;
+}
+
+/* Đẩy nhẹ thông tin chữ lên mượt mà theo card */
+.team-card:hover .team-info-brief {
+    transform: translateY(-4px);
 }
 
 .team-info-brief h3 {
@@ -498,7 +509,14 @@ body::before {
     color: #444444;
     margin-bottom: 6px;
     text-align: center;
-    transition: color 0.3s ease;
+    transition: color 0.4s ease, transform 0.4s ease;
+}
+
+/* ANIMATE TIÊU ĐỀ TÊN THÀ THÀNH CHỮ NGHIÊNG ĐẶC TRƯNG KHI HOVER */
+.team-card:hover .team-info-brief h3 {
+    color: #1A4332;
+    font-style: italic;
+    transform: scale(1.05);
 }
 
 .team-info-brief p {
@@ -508,6 +526,11 @@ body::before {
     font-family: monospace;
     letter-spacing: 1.6px;
     text-align: center;
+    transition: color 0.4s ease;
+}
+
+.team-card:hover .team-info-brief p {
+    color: #0D0D0D;
 }
 
 .team-info-brief::after {
@@ -518,6 +541,15 @@ body::before {
     background: #0D0D0D;
     margin: 12px auto 0 auto;
     opacity: 0.06;
+    transition: width 0.4s ease, background-color 0.4s ease, opacity 0.4s ease;
+}
+
+/* ANIMATE THANH GẠCH NGANG DƯỚI TÊN KHI HOVER */
+.team-card:hover .team-info-brief::after {
+    width: 55px;
+    /* Giãn dài thanh gạch ngang */
+    background: #1A4332;
+    opacity: 0.4;
 }
 
 /* ==========================================================================
